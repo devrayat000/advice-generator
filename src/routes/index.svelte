@@ -1,6 +1,8 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 
+	export const prerender = true;
+
 	export const load: Load = async ({ fetch }) => {
 		const res = await fetch('https://api.adviceslip.com/advice');
 		const data = await res.json();
@@ -19,7 +21,6 @@
 
 <script lang="ts">
 	import { invalidate } from '$app/navigation';
-	import { navigating } from '$app/stores';
 
 	import type { Advice } from 'src/lib/interfaces/advice';
 
@@ -33,6 +34,26 @@
 </script>
 
 <svelte:window bind:innerWidth />
+
+<svelte:head>
+	<title>Adwizer - Advice Generator</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta name="description" content="A simple random advice generator!" />
+	<meta name="keywords" content="advice,advice-generator" />
+	<meta name="robots" content="index,nofollow" />
+	<!-- Open Graph -->
+	<meta property="og:title" content="Adwizer - Advice Generator" />
+	<meta property="og:url" content="https://adwizer.netlify.app/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="A simple random advice generator!" />
+	<meta property="og:image" content="/demo/desktop-preview.jpg" />
+	<meta property="og:image:alt" content="Shortly Preview" />
+	<!-- Twitter -->
+	<meta name="twitter:title" content="Adwizer - Advice Generator" />
+	<meta name="twitter:description" content="A simple random advice generator!" />
+	<meta name="twitter:image" content="/demo/desktop-preview.jpg" />
+	<meta name="twitter:image:alt" content="Shortly - Demo" />
+</svelte:head>
 
 <main class="h-screen grid place-items-center bg-neutral-dark-blue">
 	<article
