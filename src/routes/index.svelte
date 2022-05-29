@@ -21,6 +21,7 @@
 
 <script lang="ts">
 	import { invalidate } from '$app/navigation';
+	import Typewriter from 'svelte-typewriter';
 
 	import type { Advice } from 'src/lib/interfaces/advice';
 
@@ -62,11 +63,14 @@
 		<h5 class="uppercase text-primary-neon text-center tracking-[0.3em] text-xs">
 			Advice #{advice.slip.id}
 		</h5>
-		<blockquote
-			class="text-primary text-quote text-center font-extrabold max-w-[28ch] my-6 before:content-[open-quote] after:content-[close-quote]"
-		>
-			{advice.slip.advice}
-		</blockquote>
+
+		<Typewriter>
+			<blockquote
+				class="text-primary text-quote text-center font-extrabold max-w-[28ch] my-6 before:content-[open-quote] after:content-[close-quote]"
+			>
+				{advice.slip.advice}
+			</blockquote>
+		</Typewriter>
 		{#if innerWidth > 768}
 			<img src="/images/pattern-divider-desktop.svg" alt="Divider" />
 		{:else}
